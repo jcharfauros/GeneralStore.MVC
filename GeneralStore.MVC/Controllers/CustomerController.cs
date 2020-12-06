@@ -16,8 +16,8 @@ namespace GeneralStore.MVC.Controllers
         // GET: Customer
         public ActionResult Index()
         {
-            List<Customer> customer = _db.Customers.ToList();
-            return View(customer);
+            List<Customer> customerList = _db.Customers.ToList();
+            return View(customerList);
         }
 
         // GET: Customer/Create
@@ -95,5 +95,18 @@ namespace GeneralStore.MVC.Controllers
         }
 
         // GET: Customer/Details/{id}
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = _db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
+        }
     }
 }
