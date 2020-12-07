@@ -40,6 +40,7 @@ namespace GeneralStore.MVC.Controllers
         }
         
         // GET: Customer/Delete/{id}
+        // [Route("delete/{id}")] is this necessary, was added in Transactions
         public ActionResult Delete(int? id)
         {
             if (id == null)
